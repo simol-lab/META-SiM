@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+metasim/__init__.py
+metasim.egg-info/PKG-INFO
+metasim.egg-info/SOURCES.txt
+metasim.egg-info/dependency_links.txt
+metasim.egg-info/requires.txt
+metasim.egg-info/top_level.txt

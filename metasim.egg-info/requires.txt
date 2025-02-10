@@ -1,0 +1,6 @@
+keras>=2.15.0
+tensorflow>=2.15.0
+umap-learn>=0.5.3
+numpy
+scipy
+sklearn
