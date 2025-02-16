@@ -7,7 +7,7 @@ import joblib
 import warnings
 
 
-FILENAME = 'atlas_pp_distilled.keras'
+FILENAME = 'atlas_pp_distilled.h5'
 FILEPATH = os.path.join(os.path.dirname(__file__), FILENAME)  # Path in the same directory as atlas.py
 FILE_URL = "https://storage.googleapis.com/fret_traces/Atlas/atlas_pp.joblib.zip"
 DENSITY_MODEL_FILENAME = 'atlas_pp_density_models.joblib'
@@ -114,7 +114,7 @@ def download_and_unzip_atlas(file_url=FILE_URL, filename=FILENAME):
 def get_atlas_2d(embedding):
     """Generates 2D Atlas coordinates for traces."""
     import tensorflow.keras as keras
-    model = keras.saving.load_model(FILEPATH)
+    model = keras.saving.load_model(FILEPATH, compile=False)
     return model.predict(embedding, batch_size=BATCH_SIZE, verbose=0)
 
 
