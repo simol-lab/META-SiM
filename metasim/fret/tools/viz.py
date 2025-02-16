@@ -1,16 +1,13 @@
 """Library for visualizations used in META-SiM."""
 import warnings
 
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    import umap
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import matplotlib.cm as cm
-    import matplotlib.colors as plt_colors
-    import metasim.fret.core.atlas as atlas
-    from sklearn import mixture
-    from sciplotlib import style as spstyle
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.colors as plt_colors
+import metasim.fret.core.atlas as atlas
+from sklearn import mixture
+from sciplotlib import style as spstyle
 
 
 def plot_umap(umap_coord, label, color, color_name, color_map='plasma',label_order=None):
@@ -55,7 +52,6 @@ def plot_umap(umap_coord, label, color, color_name, color_map='plasma',label_ord
 
     color_bar = fig.colorbar(s, ax=axes, label=color_name)
     color_bar.set_alpha(1)
-    color_bar.draw_all()
     return fig, axes
 
 
@@ -80,6 +76,7 @@ def get_umap_reducer(embedding, n_neighbors=30, n_epochs=500):
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
+        import umap
         reducer = umap.UMAP(
             n_epochs=n_epochs, n_neighbors=n_neighbors, min_dist=0.0,
             random_state=np.random.RandomState(60), n_components=2,
@@ -133,8 +130,12 @@ def _plot_atlas_reference(
                 CS = ax.contour(
                     X, Y, Z, cmap=cmap, levels=[1e-2]
                 )
-                if use_legend and CS.collections:
-                    CS.collections[0].set_label(l)
+                if use_legend:
+                    if hasattr(CS, 'collections'):
+                            CS.collections[0].set_label(l)
+                    elif hasattr(CS, 'get_paths'):
+                            CS.get_paths()[0].set_label(l)
+
             contour_counter += 1
         ax.set_xlim([xmin, xmax])
         ax.set_ylim([ymin, ymax])

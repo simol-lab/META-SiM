@@ -1,3 +1,2 @@
-from . import fret
-
-__all__ = [fret]
+from metasim import fret
+__all__ = ['fret']

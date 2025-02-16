@@ -1,22 +1,9 @@
 """Library for META-SiM models."""
 import os
-import tensorflow as tf
 from tqdm.auto import tqdm
-from metasim.fret.core.legacy.tf_layers import Attention
-from metasim.fret.core.legacy.tf_layers import Conv
-from metasim.fret.core.legacy.tf_layers import Summary
-from metasim.fret.core.legacy.tf_layers import PrependTaskToken
-from metasim.fret.core.legacy.tf_layers import Embedding
-from metasim.fret.core.legacy.tf_layers import PositionEmbedding
 
-# import Keras 2.0
-try:
-    import tf_keras as keras  # backward compatible with Keras 3.0
-except:
-    # If tf_keras is not available, use old syntax to import
-    import tensorflow.keras as keras
 
-CHECKPOINT_PATH = 'checkpoints/encoder-20240111-045226.h5'
+CHECKPOINT_PATH = 'encoder-20240111-045226.h5'
 CHECKPOINT_PATH = os.path.join(os.path.dirname(__file__), CHECKPOINT_PATH)
 BATCH_SIZE = 16
 WINDOW_SIZE = 100
@@ -25,11 +12,24 @@ WINDOW_SIZE = 100
 class Model:
     """Class for META-SiM model."""
     def __init__(self, checkpoint_path=CHECKPOINT_PATH):
+        import tensorflow as tf
+        # import Keras 2.0
+        import tensorflow.keras as keras
         keras.mixed_precision.set_global_policy('mixed_bfloat16')
+        from metasim.fret.core.legacy.tf_layers import Attention
+        from metasim.fret.core.legacy.tf_layers import Conv
+        from metasim.fret.core.legacy.tf_layers import Summary
+        from metasim.fret.core.legacy.tf_layers import PrependTaskToken
+        from metasim.fret.core.legacy.tf_layers import Embedding
+        from metasim.fret.core.legacy.tf_layers import PositionEmbedding
+        from metasim.fret.core.legacy.tf_layers import Transformer
+        from metasim.fret.core.legacy.tf_layers import Reconstructor
         self.encoder = keras.models.load_model(
             checkpoint_path,
             compile=False,
-            custom_objects={'PositionEmbedding': PositionEmbedding},
+            custom_objects={
+                'PositionEmbedding': PositionEmbedding,
+            },
         )
 
     def _get_stacked_tensors(self, tensors, trim=False):
@@ -38,6 +38,7 @@ class Model:
         This function is used to optimize the inference efficienty. Traces of the
         same length can be stored in one tensor for faster inference.
         """
+        import tensorflow as tf
         batches = []
         for tensor in tensors:
             if trim and tensor.shape[0] >= WINDOW_SIZE:
@@ -59,6 +60,7 @@ class Model:
 
         This is the main method to use META-SiM model.
         """
+        import tensorflow as tf
         if hasattr(self.encoder.layers[-1], 'framewise'):
             # This is a converted encoder
             self.encoder.layers[-1].framewise = False
@@ -85,6 +87,7 @@ class Model:
 
         This method is useful when you want to build frame-level downstream models.
         """
+        import tensorflow as tf
         self.encoder.layers[-1].framewise = True
         tensors = dataset.to_tensors()
         stacked_batches = self._get_stacked_tensors(tensors)

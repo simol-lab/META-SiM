@@ -1,13 +1,11 @@
 """Library for model-based scores defined in the META-SiM paper."""
-import numpy as np
-import tensorflow as tf
-
 
 NN_K = 50  # how many nearest neighbors are considered for the score
 
 
 def calculate_distance(embedding):
     """Calculates the distance matrix from the embeddings."""
+    import tensorflow as tf
     with tf.device('/CPU:0'):
         distance = (
             tf.expand_dims(tf.einsum('ik,ik->i', embedding, embedding), axis=-1)
@@ -30,6 +28,8 @@ def get_entropy(embedding, label, branching_factor=NN_K):
     Returns:
         A numpy array of entropy.
     """
+    import numpy as np
+    import tensorflow as tf
     distance = calculate_distance(embedding)
     top_k_results = tf.math.top_k(
         -distance, k=branching_factor + 1, sorted=True, name=None
@@ -67,6 +67,8 @@ def get_self_consistency_score(embedding, label, target_label, branching_factor=
     Returns:
         A numpy array of LCS values.
     """
+    import numpy as np
+    import tensorflow as tf
 
     distance = calculate_distance(embedding)
     top_k_results = tf.math.top_k(

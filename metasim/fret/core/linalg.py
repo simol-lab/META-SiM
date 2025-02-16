@@ -1,7 +1,6 @@
 """Library for linear algebra operations in META-SiM."""
 
 import numpy as np
-import tensorflow as tf
 from dataclasses import dataclass, field
 from typing import List, Tuple, Dict, Union, Optional
 

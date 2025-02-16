@@ -1,13 +1,13 @@
 """Library for data structures in META-SiM."""
 from openfret import Trace
 from openfret import Dataset
-import tensorflow as tf
 
 TIME_DENOMINATOR = 2000   # A constant rescaler used in training
 
 
 def _trace_data_to_tensor(donor, acceptor):
     """Helper function to convert data into tensor."""
+    import tensorflow as tf
     if acceptor is None:
         raise ValueError('Acceptor cannot be set to None.')
     acceptor = tf.cast(acceptor, tf.float32)
@@ -45,6 +45,7 @@ class OneColorDataset(Dataset):
 
     def to_tensors(self):
         """Converts a dataset into a list of tensors."""
+        import tensorflow as tf
         tensor_list = []
         for trace in self.traces:
             with tf.device('/CPU:0'):   # reduces communication overhead.
@@ -76,6 +77,7 @@ class TwoColorDataset(Dataset):
 
     def to_tensors(self):
         """Converts traces into a list of tensors."""
+        import tensorflow as tf
         tensor_list = []
         for trace in self.traces:
             with tf.device('/CPU:0'):

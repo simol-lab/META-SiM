@@ -6,7 +6,7 @@ import metasim.fret.core.data as core_data
 import metasim.fret.core.model as core_model
 
 
-CHECKPOINT_PATH = 'checkpoints/model-20240511-131505/FRETSTATE.h5'
+CHECKPOINT_PATH = 'FRETSTATE.h5'
 CHECKPOINT_PATH = os.path.join(os.path.dirname(__file__), CHECKPOINT_PATH)
 MODEL_RESOLUTION = 0.1
 

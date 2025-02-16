@@ -1,8 +1,6 @@
-from . import core, tools
-
-__all__ = [core, tools]
-
-data = core.data
-Model = core.model.Model
-tuning = tools.tuning
-get_entropy = core.score.get_entropy
+from metasim.fret import core, tools
+from metasim.fret.core import data
+from metasim.fret.core.model import Model
+from metasim.fret.core.score import get_entropy
+from metasim.fret.tools import tuning
+__all__ = ['core', 'tools']
