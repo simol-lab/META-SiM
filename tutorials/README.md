@@ -18,3 +18,7 @@ To run these tutorials on your local environment, you are recommended to create 
 ```bash
 python3 -m pip install metasim
 ```
+
+# Use your Own Data
+
+To use your own data for data analysis, we recommend using the OpenFRET Python library to convert your data into a standard data format used by META-SiM. To learn more about the data conversion, check out the [OpenFRET Python Library](https://github.com/simol-lab/OpenFRET/tree/main/python).
