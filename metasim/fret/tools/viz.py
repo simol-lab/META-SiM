@@ -132,9 +132,11 @@ def _plot_atlas_reference(
                 )
                 if use_legend:
                     if hasattr(CS, 'collections'):
-                            CS.collections[0].set_label(l)
+                        CS.collections[0].set_label(l)
                     elif hasattr(CS, 'get_paths'):
-                            CS.get_paths()[0].set_label(l)
+                        def fmt(x):
+                            return l
+                        ax.clabel(CS, CS.levels, fmt=fmt)
 
             contour_counter += 1
         ax.set_xlim([xmin, xmax])

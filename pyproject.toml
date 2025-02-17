@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "metasim"
-version = "0.0.rc9"
+version = "0.0.rc11"
 description = "A foundation model for single-molecule time traces"
 readme = "README.md"
 authors = [{ name = "Jieming Li, Leyou Zhang", email = "jmli@umich.edu" }]
