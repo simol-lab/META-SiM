@@ -4,11 +4,11 @@ Single-molecule fluorescence microscopy (SMFM) is a powerful tool for revealing 
 
 Beyond individual trace analysis, META-SiM generates high-dimensional embedding vectors for each trace, enabling efficient whole-dataset visualization, labeling, comparison, and sharing.  Combined with the objective metric of Local Shannon Entropy, this visualization facilitates rapid identification of condition-specific behaviors, even subtle or rare ones.  Application of META-SiM to existing smFRET data revealed a previously unobserved intermediate state in pre-mRNA splicing, demonstrating its potential to remove bottlenecks, improve objectivity, and accelerate biological discovery in complex single-molecule data.
 
-# The `matesim` Python Library
+# The `metasim` Python Library
 
-The `matesim` Python library provides a user-friendly interface for leveraging the power of the META-SiM foundation model.  It offers tools for data loading, processing, embedding generation, visualization, and building machine learning models for classification and regression tasks.
+The `metasim` Python library provides a user-friendly interface for leveraging the power of the META-SiM foundation model.  It offers tools for data loading, processing, embedding generation, visualization, and building machine learning models for classification and regression tasks.
 
-`matesim` is particularly well-suited for researchers working with FRET data who want to:
+`metasim` is particularly well-suited for researchers working with FRET data who want to:
 
 * Generate embeddings using the META-SiM model.
 * Visualize embeddings using UMAP and smFRET Atlas.
@@ -18,10 +18,10 @@ The `matesim` Python library provides a user-friendly interface for leveraging t
 
 ## Installation
 
-Install `matesim` using pip:
+Install `metasim` using pip:
 
 ```bash
-pip install matesim
+pip install metasim
 ```
 
 ## Getting Started
@@ -30,16 +30,16 @@ This example demonstrates a basic workflow for building a classification model u
 
 ```python
 import openfret
-import matesim
+import metasim
 import numpy as np
 
 # Load data using the OpenFRET library.
-data = matesim.fret.data.TwoColorDataset(
+data = metasim.fret.data.TwoColorDataset(
     openfret.read_data("<path_to_your_openfret_data>")
 )
 
 # Load the pre-trained META-SiM model.
-model = matesim.fret.Model()
+model = metasim.fret.Model()
 
 # Generate embeddings for the time traces.
 embeddings = model(data)
@@ -48,7 +48,7 @@ embeddings = model(data)
 labels = np.array([trace.metadata["your_label_name"] for trace in data.traces])
 
 # Train a task-specific classification model.
-task_model = matesim.fret.tuning.train_classification(
+task_model = metasim.fret.tuning.train_classification(
     embeddings, labels
 )
 
@@ -60,16 +60,16 @@ The example below shows how to create Atlas and data-specific UMAPs using META-S
 
 ```python
 import openfret
-import matesim
+import metasim
 import numpy as np
 
 # Load data using the OpenFRET library.
-data = matesim.fret.data.TwoColorDataset(
+data = metasim.fret.data.TwoColorDataset(
     openfret.read_data("<path_to_your_openfret_data>")
 )
 
 # Load the pre-trained META-SiM model.
-model = matesim.fret.Model()
+model = metasim.fret.Model()
 
 # Generate embeddings for the time traces.
 embeddings = model(data)
@@ -115,15 +115,15 @@ metasim.fret.tools.viz.plot_fret_histograms(
 )
 ```
 
-For more detailed examples and tutorials, please refer to the documentation and examples available in the `matesim` repository.
+For more detailed examples and tutorials, please refer to the documentation and examples available in the `metasim` repository.
 
 ## Contributing
 
-Contributions to `matesim` are welcome! Please see the repository for more information.
+Contributions to `metasim` are welcome! Please see the repository for more information.
 
 ## License
 
-`matesim` is licensed under the MIT License.
+`metasim` is licensed under the MIT License.
 
 ## Citation
 

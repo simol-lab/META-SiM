@@ -9,7 +9,7 @@ To run these tutorials, you are recommended to use Google Colab. Here are the li
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/metasim_umap_and_entropy.ipynb) Use META-SiM for visualizing and clustering trace embeddings and discover condition specific behaviors.
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/metasim_classification.ipynb) Use META-SiM for trace and frame classification tasks with fine-tuning. 
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/metasim_regression.ipynb) Use META-SiM for trace regression tasks with fine-tuning.
-* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/matasim_single_color.ipynb) Use META-SiM for a classification task with single-color intensity v.s. time dataset.
+* [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/metasim_single_color.ipynb) Use META-SiM for a classification task with single-color intensity v.s. time dataset.
 * [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/simol-lab/META-SiM/blob/main/tutorials/metasim_built_in_tasks.ipynb) Use META-SiM's built-in tasks for data analysis.
 
 
